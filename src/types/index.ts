@@ -9,4 +9,6 @@ export interface WeatherData {
 export interface WeatherContextType {
   weather: WeatherData | null;
   setWeather: (data: WeatherData | null) => void;
+  error: string | null;
+  setError: (msg: string | null) => void;
 }
