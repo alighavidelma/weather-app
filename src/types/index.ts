@@ -4,6 +4,7 @@ export interface WeatherData {
   description: string;
   humidity: number;
   wind: number;
+  icon: string;
 }
 
 export interface WeatherContextType {
