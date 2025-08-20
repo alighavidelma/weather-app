@@ -12,11 +12,14 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [error, setError] = useState<string | null>(null);
   return (
     <WeatherContext.Provider
       value={{
         weather,
         setWeather,
+        error,
+        setError,
       }}
     >
       {children}
