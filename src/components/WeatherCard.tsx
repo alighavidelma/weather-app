@@ -9,9 +9,14 @@ const WeatherCard: React.FC<Props> = ({ weather }) => {
   return (
     <div
       dir="rtl"
-      className="bg-white rounded-lg p-6 shadow-md w-full max-w-sm text-center"
+      className="bg-yellow-200 rounded-lg p-6 shadow-md w-full max-w-sm text-center"
     >
       <h2 className="text-xl font-bold mb-2">{weather?.city}</h2>
+      <img
+        src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+        alt={weather.description}
+        className="mx-auto"
+      />
       <p className="text-lg">{weather?.temp}°C</p>
       <p className="capitalize">{weather?.description}</p>
       <p>رطوبت : %{weather?.humidity}</p>
