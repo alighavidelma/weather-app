@@ -3,6 +3,7 @@ import { useWeather } from "../context/WeatherContext";
 import { fetchWeather } from "../services/weatherApi";
 import WeatherCard from "../components/WeatherCard";
 import Spinner from "../components/Spinner";
+import { motion } from "framer-motion";
 
 export default () => {
   const { weather, setWeather, error, setError } = useWeather();
@@ -36,12 +37,14 @@ export default () => {
           onChange={(e) => setCity(e.target.value)}
           className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none"
         />
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9, rotate: -5 }}
           onClick={handleSearch}
-          className="px-4 py-2 bg-white text-blue-600 font-bold rounded-md hover:bg-gray-100"
+          className="px-4 py-2 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 transition"
         >
           Search
-        </button>
+        </motion.button>
       </div>
       {error && <p className="text-red-500 mb-4 text-[20px]">{error}</p>}
       {loading && <Spinner />}
