@@ -5,18 +5,21 @@ import WeatherCard from "../components/WeatherCard";
 import Spinner from "../components/Spinner";
 
 export default () => {
-  const { weather, setWeather } = useWeather();
+  const { weather, setWeather, error, setError } = useWeather();
   const [city, setCity] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
     if (!city) return;
     setLoading(true);
+    setError(null);
 
     try {
       const data = await fetchWeather(city);
       setWeather(data);
     } catch (error) {
+      setError("شهر موردنظر شما یافت نشد.");
+      setWeather(null);
       console.error("Error fetching weather : ", error);
     } finally {
       setLoading(false);
@@ -40,7 +43,7 @@ export default () => {
           Search
         </button>
       </div>
-
+      {error && <p className="text-red-500 mb-4 text-[20px]">{error}</p>}
       {loading && <Spinner />}
       {weather && !loading && <WeatherCard weather={weather} />}
     </div>
