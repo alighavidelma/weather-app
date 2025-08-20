@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useWeather } from "../context/WeatherContext";
 import { fetchWeather } from "../services/weatherApi";
+import WeatherCard from "../components/WeatherCard";
+import Spinner from "../components/Spinner";
 
 export default () => {
   const { weather, setWeather } = useWeather();
   const [city, setCity] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
     if (!city) return;
+    setLoading(true);
 
     try {
       const data = await fetchWeather(city);
       setWeather(data);
     } catch (error) {
       console.error("Error fetching weather : ", error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -35,15 +41,8 @@ export default () => {
         </button>
       </div>
 
-      {weather && (
-        <div className="bg-white rounded-lg p-6 shadow-md w-full max-w-sm text-center">
-          <h2 className="text-xl font-bold mb-2">{weather.city}</h2>
-          <p className="text-lg">{weather.temp}°C</p>
-          <p className="capitalize">{weather.description}</p>
-          <p>Humidity: {weather.humidity}%</p>
-          <p>Wind: {weather.wind} m/s</p>
-        </div>
-      )}
+      {loading && <Spinner />}
+      {weather && !loading && <WeatherCard weather={weather} />}
     </div>
   );
 };
