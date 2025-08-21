@@ -1,3 +1,5 @@
+import type React from "react";
+
 export interface WeatherData {
   city: string;
   temp: number;
@@ -13,4 +15,5 @@ export interface WeatherContextType {
   error: string | null;
   setError: (msg: string | null) => void;
   history: string[];
+  setHistory: React.Dispatch<React.SetStateAction<string[]>>;
 }
