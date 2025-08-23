@@ -6,6 +6,7 @@ import Spinner from "../components/Spinner";
 
 import { useSearchHistory } from "../hooks/useLocalStorage";
 import SearchInput from "../components/SearchInput";
+import ToggleThemeButton from "../components/ToggleThemeButton";
 
 export default () => {
   const { weather, setWeather, error, setError } = useWeather();
@@ -32,8 +33,10 @@ export default () => {
     }
   };
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-600 p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-600 p-4 dark:from-gray-900 dark:to-black">
       <h1 className="text-3xl text-white font-bold mb-6">🌤 Weather App</h1>
+      <ToggleThemeButton />
+
       <SearchInput onSearch={handleSearch} />
 
       {error && <p className="text-red-500 mb-4 text-[20px]">{error}</p>}
@@ -44,7 +47,9 @@ export default () => {
         <div dir="rtl" className="mt-4">
           {history.length > 0 && (
             <div className="mt-4">
-              <h2 className="font-semibold mb-2">آخرین جستجو های شما</h2>
+              <h2 className="font-semibold mb-2 dark:text-white">
+                آخرین جستجو های شما
+              </h2>
               <ul className="flex gap-2 flex-wrap">
                 {history.map((item) => (
                   <li key={item}>
