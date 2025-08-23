@@ -13,3 +13,15 @@ export interface WeatherContextType {
   error: string | null;
   setError: (msg: string | null) => void;
 }
+
+export interface ForecastItem {
+  date: string;
+  temp: number;
+  description: string;
+  icon: string;
+}
+
+export interface ForecastData {
+  city: string;
+  list: ForecastItem[];
+}
