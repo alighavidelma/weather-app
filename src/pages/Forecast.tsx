@@ -33,7 +33,10 @@ const ForecastPage: React.FC = () => {
   }, [weather]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-600 p-4">
+    <div
+      dir="rtl"
+      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-600 p-4"
+    >
       <h1 className="text-3xl text-white font-bold mb-6">
         پیش بینی ۵ روز آینده
       </h1>
