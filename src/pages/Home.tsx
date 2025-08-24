@@ -7,6 +7,7 @@ import Spinner from "../components/Spinner";
 import { useSearchHistory } from "../hooks/useLocalStorage";
 import SearchInput from "../components/SearchInput";
 import ToggleThemeButton from "../components/ToggleThemeButton";
+import { Link } from "react-router-dom";
 
 export default () => {
   const { weather, setWeather, error, setError } = useWeather();
@@ -41,7 +42,18 @@ export default () => {
 
       {error && <p className="text-red-500 mb-4 text-[20px]">{error}</p>}
       {loading && <Spinner />}
-      {weather && !loading && <WeatherCard weather={weather} />}
+      {weather && !loading && (
+        <div className="flex flex-col items-center gap-4">
+          <WeatherCard weather={weather} />
+          <Link
+            to="/forecast"
+            className="px-4 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow hover:bg-yellow-500 transition"
+          >
+            {" "}
+            مشاهده پیش‌بینی ۵ روز آینده 📅
+          </Link>
+        </div>
+      )}
 
       {history.length > 0 && (
         <div dir="rtl" className="mt-4">
